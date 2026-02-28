@@ -358,8 +358,14 @@
 
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .package-card {
@@ -369,6 +375,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .package-card:hover {
@@ -413,21 +421,38 @@
         .package-features {
             list-style: none;
             margin-bottom: 2rem;
+            flex-grow: 1;
         }
 
         .package-features li {
             padding: 0.6rem 0;
-            padding-left: 1.8rem;
+            padding-left: 2rem;
             position: relative;
-            color: var(--color-text-muted);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .package-features li::before {
-            content: '✦';
+        .package-features li.included {
+            color: var(--color-text-muted);
+        }
+
+        .package-features li.included::before {
+            content: '✓';
             position: absolute;
             left: 0;
-            color: var(--color-accent);
+            color: var(--color-success);
+            font-weight: 700;
+        }
+
+        .package-features li.not-included {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .package-features li.not-included::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--color-danger);
+            font-weight: 700;
         }
 
         .extras {
@@ -595,13 +620,23 @@
                     <h3 class="package-name">Paquete Estrella</h3>
                     <div class="package-price">$220.000 <span>/ evento</span></div>
                     <ul class="package-features">
-                        <li>3 horas de fiesta</li>
-                        <li>Hasta 30 niños y 20 adultos</li>
-                        <li>Pelotero y cama elástica</li>
-                        <li>Vajilla y mantelería básica</li>
-                        <li>Café y agua caliente para mate</li>
-                        <li>Ambiente climatizado</li>
-                        <li>WiFi</li>
+                        <li class="included">3 horas de fiesta</li>
+                        <li class="included">Hasta 30 niños y 20 adultos</li>
+                        <li class="included">Pelotero y cama elástica</li>
+                        <li class="not-included">Escaladores con personal</li>
+                        <li class="not-included">Cancha de fútbol</li>
+                        <li class="not-included">Zona VIP adultos</li>
+                        <li class="not-included">Animación "Las Estrelladas"</li>
+                        <li class="included">Vajilla y mantelería básica</li>
+                        <li class="not-included">Recibidor con nombre</li>
+                        <li class="not-included">Invitaciones digitales</li>
+                        <li class="not-included">Piñata incluida</li>
+                        <li class="included">Café y agua caliente</li>
+                        <li class="not-included">Horno pizzero</li>
+                        <li class="not-included">Freezer y heladera</li>
+                        <li class="not-included">Personal de cocina y atención</li>
+                        <li class="included">Ambiente climatizado</li>
+                        <li class="included">WiFi</li>
                     </ul>
                     <a href="https://wa.me/5492215117638?text=Hola!%20Quiero%20consultar%20por%20el%20Paquete%20Estrella" class="btn btn-secondary" style="width:100%;justify-content:center;">Consultar</a>
                 </div>
@@ -610,17 +645,23 @@
                     <h3 class="package-name">Paquete Universo</h3>
                     <div class="package-price">$440.000 <span>/ evento</span></div>
                     <ul class="package-features">
-                        <li>3 horas de fiesta</li>
-                        <li>Hasta 40 niños y 30 adultos</li>
-                        <li>Acceso a TODAS las áreas</li>
-                        <li>Pelotero, cama elástica y escaladores</li>
-                        <li>Cancha de fútbol + Zona VIP adultos</li>
-                        <li>Animación "Las Estrelladas"</li>
-                        <li>Vajilla, mantelería y recibidor con nombre</li>
-                        <li>Invitaciones digitales personalizadas</li>
-                        <li>Piñata incluida</li>
-                        <li>Horno pizzero + Freezer y heladera</li>
-                        <li>Personal de cocina y atención</li>
+                        <li class="included">3 horas de fiesta</li>
+                        <li class="included">Hasta 40 niños y 30 adultos</li>
+                        <li class="included">Pelotero y cama elástica</li>
+                        <li class="included">Escaladores con personal</li>
+                        <li class="included">Cancha de fútbol</li>
+                        <li class="included">Zona VIP adultos</li>
+                        <li class="included">Animación "Las Estrelladas"</li>
+                        <li class="included">Vajilla, mantelería completa</li>
+                        <li class="included">Recibidor con nombre</li>
+                        <li class="included">Invitaciones digitales</li>
+                        <li class="included">Piñata incluida</li>
+                        <li class="included">Café y agua caliente</li>
+                        <li class="included">Horno pizzero</li>
+                        <li class="included">Freezer y heladera</li>
+                        <li class="included">Personal de cocina y atención</li>
+                        <li class="included">Ambiente climatizado</li>
+                        <li class="included">WiFi</li>
                     </ul>
                     <a href="https://wa.me/5492215117638?text=Hola!%20Quiero%20consultar%20por%20el%20Paquete%20Universo" class="btn btn-primary" style="width:100%;justify-content:center;">Consultar</a>
                 </div>
