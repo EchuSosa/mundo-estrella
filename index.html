@@ -25,541 +25,108 @@
             --font-body: 'Nunito', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--color-bg-dark); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        .stars-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; background: radial-gradient(ellipse at top, #1a1040 0%, var(--color-bg-dark) 70%), var(--color-bg-dark); }
+        .stars-bg::before { content: ''; position: absolute; width: 100%; height: 100%; background-image: radial-gradient(2px 2px at 20px 30px, white, transparent), radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent), radial-gradient(1px 1px at 90px 40px, white, transparent), radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent), radial-gradient(1px 1px at 230px 80px, white, transparent), radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent); background-repeat: repeat; background-size: 500px 500px; animation: twinkle 8s ease-in-out infinite alternate; }
+        @keyframes twinkle { 0% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        body {
-            font-family: var(--font-body);
-            background: var(--color-bg-dark);
-            color: var(--color-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        header { padding: 1rem 2rem; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: linear-gradient(to bottom, rgba(15, 10, 31, 0.98), transparent); }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--color-text); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .logo-star { font-size: 1.8rem; animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--color-text-muted); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--color-accent); }
+        @media (max-width: 768px) { .nav-links { display: none; } }
 
-        .stars-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: radial-gradient(ellipse at top, #1a1040 0%, var(--color-bg-dark) 70%), var(--color-bg-dark);
-        }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 2rem 4rem; }
+        .hero-badge { background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light)); color: var(--color-bg-dark); padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; margin-bottom: 1.5rem; animation: bounce 2s ease-in-out infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent-light) 50%, var(--color-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.25rem; color: var(--color-text-muted); max-width: 600px; margin-bottom: 2rem; }
+        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-        .stars-bg::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, white, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(1px 1px at 90px 40px, white, transparent),
-                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
-                radial-gradient(1px 1px at 230px 80px, white, transparent),
-                radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent);
-            background-repeat: repeat;
-            background-size: 500px 500px;
-            animation: twinkle 8s ease-in-out infinite alternate;
-        }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border-radius: 50px; font-family: var(--font-body); font-size: 1.1rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--color-accent), #E67E00); color: var(--color-bg-dark); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 30px rgba(245, 158, 11, 0.5); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.1); color: var(--color-text); border: 2px solid rgba(255, 255, 255, 0.2); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.2); }
 
-        @keyframes twinkle {
-            0% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-family: var(--font-display); font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
+        .section-subtitle { text-align: center; color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        #disponibilidad, #paquetes, #fotos, #contacto { scroll-margin-top: 100px; }
 
-        header {
-            padding: 1rem 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: linear-gradient(to bottom, rgba(15, 10, 31, 0.98), transparent);
-        }
+        /* Galería */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .gallery-item { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: 3rem; }
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--color-text);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-star {
-            font-size: 1.8rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--color-text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-accent);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-        }
-
-        .hero-badge {
-            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-            color: var(--color-bg-dark);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent-light) 50%, var(--color-accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-accent), #E67E00);
-            color: var(--color-bg-dark);
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 30px rgba(245, 158, 11, 0.5);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--color-text);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--color-text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #disponibilidad, #paquetes, #contacto {
-            scroll-margin-top: 100px;
-        }
-
-        .calendar-container {
-            background: var(--color-bg-card);
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .calendar-month {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .calendar-nav {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .calendar-nav button {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--color-text);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background 0.3s;
-        }
-
-        .calendar-nav button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            font-weight: 700;
-            color: var(--color-text-muted);
-            padding: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .calendar-day.available {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--color-success);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .calendar-day.occupied {
-            background: rgba(239, 68, 68, 0.2);
-            color: var(--color-danger);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        .calendar-day.empty {
-            background: transparent;
-        }
-
-        .calendar-legend {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
-        }
-
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
+        /* Calendario */
+        .calendar-container { background: var(--color-bg-card); border-radius: 24px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .calendar-month { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
+        .calendar-nav { display: flex; gap: 0.5rem; }
+        .calendar-nav button { background: rgba(255, 255, 255, 0.1); border: none; color: var(--color-text); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: background 0.3s; }
+        .calendar-nav button:hover { background: rgba(255, 255, 255, 0.2); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; }
+        .calendar-day-header { text-align: center; font-weight: 700; color: var(--color-text-muted); padding: 0.5rem; font-size: 0.85rem; }
+        .calendar-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: 600; font-size: 0.95rem; }
+        .calendar-day.available { background: rgba(16, 185, 129, 0.2); color: var(--color-success); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .calendar-day.occupied { background: rgba(239, 68, 68, 0.2); color: var(--color-danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .calendar-day.empty { background: transparent; }
+        .calendar-legend { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--color-text-muted); }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
         .legend-dot.available { background: var(--color-success); }
         .legend-dot.occupied { background: var(--color-danger); }
 
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
+        /* Paquetes */
+        .packages-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        @media (max-width: 768px) { .packages-grid { grid-template-columns: 1fr; } }
+        .package-card { background: var(--color-bg-card); border-radius: 24px; padding: 2.5rem; border: 1px solid rgba(255, 255, 255, 0.1); position: relative; transition: transform 0.3s; display: flex; flex-direction: column; }
+        .package-card:hover { transform: translateY(-5px); }
+        .package-card.featured { border-color: var(--color-accent); box-shadow: 0 0 40px rgba(245, 158, 11, 0.2); }
+        .package-badge { position: absolute; top: -12px; right: 24px; background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light)); color: var(--color-bg-dark); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+        .package-name { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .package-price { font-size: 2.5rem; font-weight: 700; color: var(--color-accent); margin-bottom: 0.5rem; }
+        .package-price span { font-size: 1rem; color: var(--color-text-muted); }
+        .package-deposit { font-size: 0.9rem; color: var(--color-success); margin-bottom: 1.5rem; font-weight: 600; }
+        .package-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+        .package-features li { padding: 0.5rem 0; padding-left: 2rem; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .package-features li.included { color: var(--color-text-muted); }
+        .package-features li.included::before { content: '✓'; position: absolute; left: 0; color: var(--color-success); font-weight: 700; }
+        .package-features li.not-included { color: rgba(255, 255, 255, 0.3); }
+        .package-features li.not-included::before { content: '✗'; position: absolute; left: 0; color: var(--color-danger); font-weight: 700; }
 
-        @media (max-width: 768px) {
-            .packages-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Extras */
+        .extras { margin-top: 3rem; background: var(--color-bg-card); border-radius: 24px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .extras h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; text-align: center; }
+        .extras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .extra-item { display: flex; justify-content: space-between; padding: 0.8rem 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; }
+        .extra-item span:last-child { color: var(--color-accent); font-weight: 700; }
 
-        .package-card {
-            background: var(--color-bg-card);
-            border-radius: 24px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
+        /* Contacto */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .contact-card { background: var(--color-bg-card); border-radius: 24px; padding: 2rem; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s; }
+        .contact-card:hover { transform: translateY(-3px); }
+        .contact-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact-card h3 { font-family: var(--font-display); margin-bottom: 0.5rem; }
+        .contact-card p { color: var(--color-text-muted); }
+        .contact-card a { color: var(--color-accent); text-decoration: none; font-weight: 600; }
 
-        .package-card:hover {
-            transform: translateY(-5px);
-        }
+        /* WhatsApp */
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: white; }
 
-        .package-card.featured {
-            border-color: var(--color-accent);
-            box-shadow: 0 0 40px rgba(245, 158, 11, 0.2);
-        }
-
-        .package-badge {
-            position: absolute;
-            top: -12px;
-            right: 24px;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-            color: var(--color-bg-dark);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .package-name {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .package-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .package-price span {
-            font-size: 1rem;
-            color: var(--color-text-muted);
-        }
-
-        .package-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .package-features li {
-            padding: 0.6rem 0;
-            padding-left: 2rem;
-            position: relative;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .package-features li.included {
-            color: var(--color-text-muted);
-        }
-
-        .package-features li.included::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--color-success);
-            font-weight: 700;
-        }
-
-        .package-features li.not-included {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .package-features li.not-included::before {
-            content: '✗';
-            position: absolute;
-            left: 0;
-            color: var(--color-danger);
-            font-weight: 700;
-        }
-
-        .extras {
-            margin-top: 3rem;
-            background: var(--color-bg-card);
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .extras h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .extras-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .extra-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-        }
-
-        .extra-item span:last-child {
-            color: var(--color-accent);
-            font-weight: 700;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-card {
-            background: var(--color-bg-card);
-            border-radius: 24px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-3px);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card h3 {
-            font-family: var(--font-display);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card p {
-            color: var(--color-text-muted);
-        }
-
-        .contact-card a {
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: transform 0.3s;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-float svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--color-text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        footer { text-align: center; padding: 3rem 2rem; color: var(--color-text-muted); border-top: 1px solid rgba(255, 255, 255, 0.1); }
 
         @media (max-width: 640px) {
             .hero h1 { font-size: 2.2rem; }
@@ -579,6 +146,7 @@
         <nav>
             <a href="#" class="logo"><span class="logo-star">⭐</span> Mundo Estrella</a>
             <ul class="nav-links">
+                <li><a href="#fotos">Fotos</a></li>
                 <li><a href="#disponibilidad">Disponibilidad</a></li>
                 <li><a href="#paquetes">Paquetes</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -595,6 +163,19 @@
                 <a href="#paquetes" class="btn btn-secondary">Ver paquetes</a>
             </div>
         </section>
+
+        <section id="fotos">
+            <h2 class="section-title">📸 Conocé el lugar</h2>
+            <p class="section-subtitle">Un espacio diseñado para que los chicos se diviertan y los grandes disfruten</p>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="gallery-placeholder">🎈</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">🎪</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">🎉</div></div>
+                <div class="gallery-item"><div class="gallery-placeholder">⭐</div></div>
+            </div>
+            <p style="text-align:center;margin-top:1.5rem;color:var(--color-text-muted);font-size:0.9rem;">📷 Próximamente fotos reales del salón</p>
+        </section>
+
         <section id="disponibilidad">
             <h2 class="section-title">📅 Disponibilidad</h2>
             <p class="section-subtitle">Consultá qué fechas están disponibles para tu evento</p>
@@ -612,6 +193,7 @@
             </div>
             <p style="text-align:center;margin-top:1.5rem;color:var(--color-text-muted);font-size:0.9rem;">ℹ️ Para confirmar disponibilidad exacta, contactanos por WhatsApp.</p>
         </section>
+
         <section id="paquetes">
             <h2 class="section-title">🎁 Paquetes</h2>
             <p class="section-subtitle">Elegí el paquete que mejor se adapte a tu celebración</p>
@@ -619,24 +201,18 @@
                 <div class="package-card">
                     <h3 class="package-name">Paquete Estrella</h3>
                     <div class="package-price">$220.000 <span>/ evento</span></div>
+                    <div class="package-deposit">💰 Reservá con el 50% de seña</div>
                     <ul class="package-features">
                         <li class="included">3 horas de fiesta</li>
                         <li class="included">Hasta 30 niños y 20 adultos</li>
                         <li class="included">Pelotero y cama elástica</li>
-                        <li class="not-included">Escaladores con personal</li>
-                        <li class="not-included">Cancha de fútbol</li>
-                        <li class="not-included">Zona VIP adultos</li>
+                        <li class="not-included">Escaladores, cancha y zona VIP</li>
                         <li class="not-included">Animación "Las Estrelladas"</li>
                         <li class="included">Vajilla y mantelería básica</li>
-                        <li class="not-included">Recibidor con nombre</li>
-                        <li class="not-included">Invitaciones digitales</li>
+                        <li class="not-included">Decoración personalizada</li>
                         <li class="not-included">Piñata incluida</li>
-                        <li class="included">Café y agua caliente</li>
-                        <li class="not-included">Horno pizzero</li>
-                        <li class="not-included">Freezer y heladera</li>
-                        <li class="not-included">Personal de cocina y atención</li>
-                        <li class="included">Ambiente climatizado</li>
-                        <li class="included">WiFi</li>
+                        <li class="included">Café, agua caliente, WiFi</li>
+                        <li class="not-included">Cocina equipada y personal</li>
                     </ul>
                     <a href="https://wa.me/5492215117638?text=Hola!%20Quiero%20consultar%20por%20el%20Paquete%20Estrella" class="btn btn-secondary" style="width:100%;justify-content:center;">Consultar</a>
                 </div>
@@ -644,24 +220,18 @@
                     <div class="package-badge">⭐ MÁS ELEGIDO</div>
                     <h3 class="package-name">Paquete Universo</h3>
                     <div class="package-price">$440.000 <span>/ evento</span></div>
+                    <div class="package-deposit">💰 Reservá con el 50% de seña</div>
                     <ul class="package-features">
                         <li class="included">3 horas de fiesta</li>
                         <li class="included">Hasta 40 niños y 30 adultos</li>
                         <li class="included">Pelotero y cama elástica</li>
-                        <li class="included">Escaladores con personal</li>
-                        <li class="included">Cancha de fútbol</li>
-                        <li class="included">Zona VIP adultos</li>
+                        <li class="included">Escaladores, cancha y zona VIP</li>
                         <li class="included">Animación "Las Estrelladas"</li>
-                        <li class="included">Vajilla, mantelería completa</li>
-                        <li class="included">Recibidor con nombre</li>
-                        <li class="included">Invitaciones digitales</li>
+                        <li class="included">Vajilla y mantelería completa</li>
+                        <li class="included">Decoración personalizada</li>
                         <li class="included">Piñata incluida</li>
-                        <li class="included">Café y agua caliente</li>
-                        <li class="included">Horno pizzero</li>
-                        <li class="included">Freezer y heladera</li>
-                        <li class="included">Personal de cocina y atención</li>
-                        <li class="included">Ambiente climatizado</li>
-                        <li class="included">WiFi</li>
+                        <li class="included">Café, agua caliente, WiFi</li>
+                        <li class="included">Cocina equipada y personal</li>
                     </ul>
                     <a href="https://wa.me/5492215117638?text=Hola!%20Quiero%20consultar%20por%20el%20Paquete%20Universo" class="btn btn-primary" style="width:100%;justify-content:center;">Consultar</a>
                 </div>
@@ -678,6 +248,7 @@
                 <p style="text-align:center;margin-top:1rem;color:var(--color-text-muted);font-size:0.85rem;">* Uso de instalaciones hasta 10 años de edad</p>
             </div>
         </section>
+
         <section id="contacto">
             <h2 class="section-title">📍 Contacto</h2>
             <p class="section-subtitle">Estamos en Tolosa, La Plata. ¡Vení a conocernos!</p>
